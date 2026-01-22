@@ -101,5 +101,6 @@ for training and evaluating document information extraction models. Despite OCR 
 the dataset represents real-world variability and supports robust model evaluation.
 
 
-* **Author**
-Dhruv Sharma 
+
+## Author
+* **Dhruv Sharma**
