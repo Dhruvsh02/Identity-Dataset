@@ -40,17 +40,20 @@ def extract(pattern, text):
 
 def extract_name(text):
     lines = [l.strip() for l in text.split("\n") if l.strip()]
+
     for line in lines:
-        if "name" in line.lower():
-            parts = line.split(":")
-            if len(parts) > 1:
-                name = parts[1].strip()
-                words = name.split()
-                if len(words) >= 2:
-                    return words[0], " ".join(words[1:])
-                elif len(words) == 1:
-                    return words[0], ""
+        # Skip lines with digits or special keywords
+        if any(char.isdigit() for char in line):
+            continue
+        if any(word in line.lower() for word in ["government", "india", "republic", "address", "driving_license", "passport"]):
+            continue
+
+        words = line.split()
+        if 2 <= len(words) <= 4 and all(w.isalpha() for w in words):
+            return words[0], " ".join(words[1:])
+
     return "", ""
+
 
 # =========================
 # MAIN PROCESS
